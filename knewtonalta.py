@@ -60,45 +60,11 @@ class Equation:
         else:
             raise ValueError
 
-    def differentiate(self):
-        output = []
-        for monomial in self.monomials:
-            new_monomial = Monomial(monomial.coefficient * monomial.power, monomial.power - 1)
-            if new_monomial.coefficient != 0:
-                output.append(new_monomial)
-        return output
-
     def solve(self, x):
         answer = 0
         for monomial in self.monomials:
             answer += (monomial.coefficient * x ** monomial.power)
         return answer
 
-
-mono1 = Monomial(-5/3, 3)
-mono2 = Monomial(10, 2)
-mono3 = Monomial(-15, 1)
-mono4 = Monomial(-5, 0)
-
-eq1 = Equation(mono1, mono2, mono3)
-eq1.display()
-
-eq1d = Equation(*eq1.differentiate())
-print(eq1d.display())
-
-# eq1d2 = Equation(*eq1d.differentiate())
-# print(eq1d2.display())
-#
-# print(eq1d.quad_equation(return_eq=True))
-#
-# x1, x2 = eq1d.quad_equation()
-#
-# if eq1d2.solve(x1) > 0:
-#     print(str(x1) + ' is a local minimum')
-# else:
-#     print(str(x1) + ' is a local maximum')
-#
-# if eq1d2.solve(x2) > 0:
-#     print(str(x2) + ' is a local minimum')
-# else:
-#     print(str(x2) + ' is a local maximum')
+    def average_roc(self, x, x2):
+        return slope_func(x, x2, self.solve(x), self.solve(x2))
