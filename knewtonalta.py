@@ -1,6 +1,11 @@
 import numpy as np
 
 
+def slope_func(x, x2, y, y2):
+    slope = (y - y2) / (x - x2)
+    return slope
+
+
 class Monomial:
     def __init__(self, coefficient, power):
         self.coefficient = coefficient
